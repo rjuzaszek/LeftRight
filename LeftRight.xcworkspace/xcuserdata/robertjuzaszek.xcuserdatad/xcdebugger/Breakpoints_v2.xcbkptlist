@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "06430E41-13B6-4161-BDF8-06F037E05A12"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "594CF7D0-3463-4D3F-B21D-C1A18D17A9A2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "NSLayoutConstraintFailedToFindDefaultResolvedValueForSymbolicConstant"
+            moduleName = "">
+            <Locations>
+               <Location
+                  uuid = "594CF7D0-3463-4D3F-B21D-C1A18D17A9A2 - 900a0d4ca8851b73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NSLayoutConstraintFailedToFindDefaultResolvedValueForSymbolicConstant"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

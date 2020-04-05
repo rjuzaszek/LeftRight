@@ -1,0 +1,75 @@
+//
+//  CardView.swift
+//  LeftRight
+//
+//  Created by Robert Juzaszek on 01/04/2020.
+//  Copyright © 2020 Robert Juzaszek. All rights reserved.
+//
+
+import UIKit
+
+class CardView: UIView {
+    
+    //MARK: - Public properties
+    
+    var shouldRotateLeft = false
+    
+    //MARK: - Private properties
+    
+    //MARK: - Initialisers
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .clear
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        backgroundColor = .clear
+    }
+    
+    //MARK: - Public functions
+    
+    func setup(model: SwipeCardModel) {
+        removeAllSubviews()
+        let imageView = UIImageView()
+        imageView.backgroundColor = .white
+        ImageDownloader.download(from: model.photoUrl, completion: { image in
+            imageView.image = image
+        })
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 15
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        addSubview(imageView)
+        setImageViewConstraints(imageView)
+        setShadow()
+    }
+}
+
+//MARK: - Private functions
+private extension CardView {
+    
+    func removeAllSubviews() {
+        subviews.forEach({
+            $0.removeFromSuperview()
+        })
+    }
+    
+    func setImageViewConstraints(_ imageView: UIImageView) {
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    func setShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        layer.shadowOpacity = 0.3
+        layer.shadowRadius = 2
+    }
+}
