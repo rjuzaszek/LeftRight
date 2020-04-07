@@ -10,16 +10,18 @@ import Foundation
 
 class SwipeCardsViewModel: SwipeCardsViewModelProtocol {
     
-    var photosUrls: [String]
+    var categories: [Category]
     
-    init(photosUrls: [String]) {
-        self.photosUrls = photosUrls
+    init(categories: [Category]) {
+        self.categories = categories
     }
     
-    func getNextCard() -> SwipeCardModel {
-        let index = Int.random(in: 0..<photosUrls.count)
-        let model = SwipeCardModel(photoUrl: photosUrls[index])
-        return model
+    func getNextCard(completion: @escaping (SwipeCardModel) -> Void) {
+        let index = Int.random(in: 0..<categories.count)
+        let getPictureStrategy = GetPictureUrlStrategyFactory.make(type: categories[index].method, parameters: categories[index].parameters)
+        getPictureStrategy.getPicutreUrl(from: categories[index].url, completion: {
+            completion(SwipeCardModel(photoUrl: $0))
+        })
     }
     
     func getNextDirection() -> SwipeCards.Direction {

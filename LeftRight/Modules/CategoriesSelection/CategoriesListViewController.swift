@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 class CategoriesListViewController: UIViewController {
-    
     //MARK: - Public properties
     
     weak var coordinator: CategoriesListCoordination?
@@ -60,7 +59,6 @@ private extension CategoriesListViewController {
     }
     
     @objc func refreshTrigerred() {
-        
     }
     
     func setPlayNavigationButton() {
@@ -69,26 +67,21 @@ private extension CategoriesListViewController {
     }
     
     @objc func startGame() {
-        guard let viewModel = viewModel else { return }
-        var selectedCategoriesUrls = [String]()
-        tableView.indexPathsForSelectedRows?.map({ $0.row }).forEach({
-            //selectedCategoriesUrls.append(viewModel.categoryUrl(forIndex: $0))
-        })
-        coordinator?.startGame(categoriesUrls: selectedCategoriesUrls)
+        guard let selectedCategories = viewModel?.selectedCategories else { return }
+        coordinator?.startGame(categories: selectedCategories)
     }
     
     func setupViewModel() {
         viewModel = CategoriesListViewModel(categoriesService: MockedCategories())
-        
-        viewModel?.categories.drive(onNext: { categories in
-            self.tableView.reloadData()
-        }).disposed(by: disposeBag)
-        
+        viewModel?.categories.drive(onNext: { [weak self] _ in self?.tableView.reloadData() }).disposed(by: disposeBag)
         viewModel?.isFetching.drive(refreshView.rx.isRefreshing).disposed(by: disposeBag)
-        
-//        viewModel?.isFetching.drive(onNext: { isFetching in
-//            isFetching ? self.tableView.refreshControl?.beginRefreshing() : self.tableView.refreshControl?.endRefreshing()
-//        }).disposed(by: disposeBag)
+        tableView.rx.itemSelected.subscribe(onNext: { [weak self] _ in self?.setSelectedIndexes() }).disposed(by: disposeBag)
+        tableView.rx.itemDeselected.subscribe(onNext: { [weak self] _ in self?.setSelectedIndexes() }).disposed(by: disposeBag)
+    }
+    
+    func setSelectedIndexes() {
+        let selectedIndexes = tableView.indexPathsForSelectedRows?.map({ $0.row })
+        viewModel?.selectedIndexes.accept(selectedIndexes ?? [])
     }
 }
 
@@ -100,9 +93,8 @@ extension CategoriesListViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesList.Cells.selection.rawValue, for: indexPath)
-        if let categoryViewModel = viewModel?.categoryViewModel(forIndex: indexPath.row) {
-            (cell as? CategorySelectionCell)?.setup(viewModel: categoryViewModel)
-        }
+        guard let categoryViewModel = viewModel?.categoryViewModel(forIndex: indexPath.row) else { return cell }
+        (cell as? CategorySelectionCell)?.setup(viewModel: categoryViewModel)
         return cell
     }
 }

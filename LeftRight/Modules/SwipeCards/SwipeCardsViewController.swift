@@ -43,15 +43,16 @@ private extension SwipeCardsViewController {
         let cards = [CardView(), CardView(), CardView(), CardView()]
         
         for (index,card) in cards.enumerated() {
-            guard let model = viewModel?.getNextCard() else { return }
-            card.setup(model: model)
-            addSwipeRecognizerToCard(card)
-            if index == 0 {
-                gameUI.cardsContainer.addSubview(card)
-            } else {
-                gameUI.cardsContainer.insertSubview(card, belowSubview: cards[index-1])
-            }
-            setupCardConstraints(card)
+            viewModel?.getNextCard(completion: { [weak self] model in
+                card.setup(model: model)
+                self?.addSwipeRecognizerToCard(card)
+                if index == 0 {
+                    self?.gameUI.cardsContainer.addSubview(card)
+                } else {
+                    self?.gameUI.cardsContainer.insertSubview(card, belowSubview: cards[index-1])
+                }
+                self?.setupCardConstraints(card)
+            })
         }
         
         if let swipeDirection = viewModel?.getNextDirection() {
@@ -139,9 +140,9 @@ private extension SwipeCardsViewController {
     
     func dismissCard(_ card: CardView) {
         card.removeFromSuperview()
-        if let nextCard = viewModel?.getNextCard() {
-            makeNewCard(with: nextCard)
-        }
+        viewModel?.getNextCard(completion: { [weak self] model in
+            self?.makeNewCard(with: model)
+        })
 
         score += 1
         gameUI.scoreLabel.text = String(score)

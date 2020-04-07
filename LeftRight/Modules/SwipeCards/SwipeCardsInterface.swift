@@ -24,6 +24,6 @@ protocol SwipeCardsCoordination: class {
 
 protocol SwipeCardsViewModelProtocol {
     func getNextDirection() -> SwipeCards.Direction
-    func getNextCard() -> SwipeCardModel
+    func getNextCard(completion: @escaping (SwipeCardModel) -> Void)
 }
 

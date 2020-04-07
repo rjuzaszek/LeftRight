@@ -19,9 +19,9 @@ class GameCoordinator: NavigationCoordinator {
 }
 
 extension GameCoordinator: CategoriesListCoordination {
-    func startGame(categoriesUrls: [String]) {
-        guard !categoriesUrls.isEmpty else { return }
-        let swipeCardsViewModel = SwipeCardsViewModel(photosUrls: categoriesUrls)
+    func startGame(categories: [Category]) {
+        guard !categories.isEmpty else { return }
+        let swipeCardsViewModel = SwipeCardsViewModel(categories: categories)
         let swipeCardsVC = SwipeCardsViewController()
         swipeCardsVC.viewModel = swipeCardsViewModel
         swipeCardsVC.coordinator = self

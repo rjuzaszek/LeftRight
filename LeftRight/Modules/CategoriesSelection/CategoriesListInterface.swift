@@ -24,10 +24,12 @@ protocol CategoriesListViewModelProtocol {
     var error: Driver<String?> { get }
     var hasError: Bool { get }
     var categories: Driver<[Category]> { get }
+    var selectedIndexes: BehaviorRelay<[Int]> { get }
+    var selectedCategories: [Category] { get }
     
     func categoryViewModel(forIndex: Int) -> CategoryViewModel?
 }
 
 protocol CategoriesListCoordination: class {
-    func startGame(categoriesUrls: [String])
+    func startGame(categories: [Category])
 }

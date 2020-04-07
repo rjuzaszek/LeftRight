@@ -12,6 +12,8 @@ import RxCocoa
 
 class CategoriesListViewModel: CategoriesListViewModelProtocol {
     
+    let selectedIndexes = BehaviorRelay<[Int]>(value: [])
+    
     //MARK: - Private properties
     
     private let disposeBag = DisposeBag()
@@ -48,6 +50,10 @@ class CategoriesListViewModel: CategoriesListViewModelProtocol {
     
     var categories: Driver<[Category]> {
         return categoriesSubject.asDriver()
+    }
+    
+    var selectedCategories: [Category] {
+        return selectedIndexes.value.map({ categoriesSubject.value[$0] })
     }
     
     func categoryViewModel(forIndex: Int) -> CategoryViewModel? {

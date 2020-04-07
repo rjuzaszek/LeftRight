@@ -8,8 +8,12 @@
 
 import Foundation
 
-struct Category: Codable {
+struct Category {
     var name: String
-    var url: String
-    var imageUrl: String = ""
+    var thumbnailImageUrl: String = ""
+    var url: String = ""
+    
+    //another object later / rest = fieldName
+    var method: String
+    var parameters: [String: Any]
 }

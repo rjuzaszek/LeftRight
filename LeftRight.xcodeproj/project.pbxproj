@@ -18,6 +18,11 @@
 		8A3CCBF5243341BC00AA80AD /* ExtendedLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3CCBF4243341BC00AA80AD /* ExtendedLaunchScreen.storyboard */; };
 		8A3CCBF724334F4500AA80AD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CCBF624334F4500AA80AD /* Category.swift */; };
 		8A3CCBFB2433502900AA80AD /* CategoriesListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CCBFA2433502900AA80AD /* CategoriesListInterface.swift */; };
+		8A9AFE12243BBC84000BF358 /* GetPictureUrlStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AFE11243BBC84000BF358 /* GetPictureUrlStrategy.swift */; };
+		8A9AFE15243BBC9C000BF358 /* SimplePictureUrlStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AFE14243BBC9C000BF358 /* SimplePictureUrlStrategy.swift */; };
+		8A9AFE17243BBF76000BF358 /* GetPictureUrlStrategyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AFE16243BBF76000BF358 /* GetPictureUrlStrategyFactory.swift */; };
+		8A9AFE19243C7A86000BF358 /* RestPictureUrlStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AFE18243C7A86000BF358 /* RestPictureUrlStrategy.swift */; };
+		8A9AFE1D243C7E1C000BF358 /* MockedCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AFE1C243C7E1C000BF358 /* MockedCategories.swift */; };
 		8AA1268B243A2F340088938E /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1268A243A2F340088938E /* CategoryViewModel.swift */; };
 		8AA41CD42439FDC7001C8F07 /* CategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA41CD32439FDC7001C8F07 /* CategoriesListViewModel.swift */; };
 		8AA41CD7243A0069001C8F07 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA41CD6243A0069001C8F07 /* CategoriesService.swift */; };
@@ -64,6 +69,11 @@
 		8A3CCBF4243341BC00AA80AD /* ExtendedLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExtendedLaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A3CCBF624334F4500AA80AD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8A3CCBFA2433502900AA80AD /* CategoriesListInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListInterface.swift; sourceTree = "<group>"; };
+		8A9AFE11243BBC84000BF358 /* GetPictureUrlStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPictureUrlStrategy.swift; sourceTree = "<group>"; };
+		8A9AFE14243BBC9C000BF358 /* SimplePictureUrlStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePictureUrlStrategy.swift; sourceTree = "<group>"; };
+		8A9AFE16243BBF76000BF358 /* GetPictureUrlStrategyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPictureUrlStrategyFactory.swift; sourceTree = "<group>"; };
+		8A9AFE18243C7A86000BF358 /* RestPictureUrlStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestPictureUrlStrategy.swift; sourceTree = "<group>"; };
+		8A9AFE1C243C7E1C000BF358 /* MockedCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedCategories.swift; sourceTree = "<group>"; };
 		8AA1268A243A2F340088938E /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		8AA41CD32439FDC7001C8F07 /* CategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListViewModel.swift; sourceTree = "<group>"; };
 		8AA41CD6243A0069001C8F07 /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
@@ -176,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				8AA41CD32439FDC7001C8F07 /* CategoriesListViewModel.swift */,
-				8A3CCBF624334F4500AA80AD /* Category.swift */,
 				8AA1268A243A2F340088938E /* CategoryViewModel.swift */,
 			);
 			path = Models;
@@ -191,10 +200,46 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8A9AFE10243BBC71000BF358 /* GetPictureStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				8A9AFE13243BBC88000BF358 /* Implementations */,
+				8A9AFE11243BBC84000BF358 /* GetPictureUrlStrategy.swift */,
+				8A9AFE16243BBF76000BF358 /* GetPictureUrlStrategyFactory.swift */,
+			);
+			path = GetPictureStrategy;
+			sourceTree = "<group>";
+		};
+		8A9AFE13243BBC88000BF358 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				8A9AFE14243BBC9C000BF358 /* SimplePictureUrlStrategy.swift */,
+				8A9AFE18243C7A86000BF358 /* RestPictureUrlStrategy.swift */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
+		8A9AFE1A243C7E05000BF358 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				8A9AFE1C243C7E1C000BF358 /* MockedCategories.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		8A9AFE1B243C7E08000BF358 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				8A9AFE1A243C7E05000BF358 /* Implementation */,
+				8AA41CD6243A0069001C8F07 /* CategoriesService.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		8AA41CD5243A0056001C8F07 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8AA41CD6243A0069001C8F07 /* CategoriesService.swift */,
+				8A9AFE1B243C7E08000BF358 /* Categories */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -212,6 +257,7 @@
 		8AB826792433DFE8007DE8C9 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				8A3CCBF624334F4500AA80AD /* Category.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -319,6 +365,7 @@
 		8AFC3FC924333C4E001E00DE /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8A9AFE10243BBC71000BF358 /* GetPictureStrategy */,
 				8AA41CD5243A0056001C8F07 /* Services */,
 				8AB504CA24373B840067288E /* ImageDownloader.swift */,
 			);
@@ -562,17 +609,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AFC3FD724333EB1001E00DE /* GameCoordinator.swift in Sources */,
+				8A9AFE15243BBC9C000BF358 /* SimplePictureUrlStrategy.swift in Sources */,
 				8A1BEECE2433A461002B5A7C /* SwipeCardModel.swift in Sources */,
 				8AFC3FD324333D50001E00DE /* Coordinator.swift in Sources */,
 				8AB504D3243755570067288E /* SwipeCardsGameUI.swift in Sources */,
 				8AFC3FD124333CCF001E00DE /* CategoriesListViewController.swift in Sources */,
+				8A9AFE1D243C7E1C000BF358 /* MockedCategories.swift in Sources */,
 				8A1BEEC424338FFB002B5A7C /* SwipeCardsViewController.swift in Sources */,
 				8A1BEECC2433A155002B5A7C /* SwipeCardsInterface.swift in Sources */,
 				8AFC3FA224333418001E00DE /* AppDelegate.swift in Sources */,
+				8A9AFE12243BBC84000BF358 /* GetPictureUrlStrategy.swift in Sources */,
 				8AFC3FDA24333F71001E00DE /* NavigationCoordinator.swift in Sources */,
 				8AB504C724364AE70067288E /* CardView.swift in Sources */,
 				8AFC3FCB24333C68001E00DE /* MainCoordinator.swift in Sources */,
 				8AA41CD42439FDC7001C8F07 /* CategoriesListViewModel.swift in Sources */,
+				8A9AFE19243C7A86000BF358 /* RestPictureUrlStrategy.swift in Sources */,
 				8AA1268B243A2F340088938E /* CategoryViewModel.swift in Sources */,
 				8A1BEEBC24335FAD002B5A7C /* SceneDelegate.swift in Sources */,
 				8AA41CD7243A0069001C8F07 /* CategoriesService.swift in Sources */,
@@ -580,6 +631,7 @@
 				8AB504C924367E8E0067288E /* SwipeCardsViewModel.swift in Sources */,
 				8A3CCBF32433416100AA80AD /* ExtendedLaunchScreenViewController.swift in Sources */,
 				8A3CCBFB2433502900AA80AD /* CategoriesListInterface.swift in Sources */,
+				8A9AFE17243BBF76000BF358 /* GetPictureUrlStrategyFactory.swift in Sources */,
 				8AB504CF243751460067288E /* SwipeCardsGameComponentsFactory.swift in Sources */,
 				8A1BEEC1243369B4002B5A7C /* CategorySelectionCell.swift in Sources */,
 				8AB504CB24373B840067288E /* ImageDownloader.swift in Sources */,
