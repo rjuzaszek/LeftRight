@@ -7,14 +7,25 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class SwipeCardsViewModel: SwipeCardsViewModelProtocol {
     
-    var categories: [Category]
+    //MARK: - Public properties
+    
+    //MARK: - Private properties
+    
+    private let categories: [Category]
+    
+    
+    //MARK: - Initializers
     
     init(categories: [Category]) {
         self.categories = categories
     }
+    
+    //MARK: - Public interface
     
     func getNextCard(completion: @escaping (SwipeCardModel) -> Void) {
         let index = Int.random(in: 0..<categories.count)

@@ -26,10 +26,7 @@ class CategoriesListViewController: UIViewController {
     override func viewDidLoad() {
         registerCells()
         setupTableView()
-        setupViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        bindViewModel()
         setPlayNavigationButton()
     }
 }
@@ -64,6 +61,7 @@ private extension CategoriesListViewController {
     func setPlayNavigationButton() {
         let playButton = UIBarButtonItem(title: "Play", style: .plain, target: self, action: #selector(startGame))
         navigationItem.rightBarButtonItem = playButton
+        viewModel?.isPlayButtonEnabled.drive(playButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     @objc func startGame() {
@@ -71,7 +69,7 @@ private extension CategoriesListViewController {
         coordinator?.startGame(categories: selectedCategories)
     }
     
-    func setupViewModel() {
+    func bindViewModel() {
         viewModel = CategoriesListViewModel(categoriesService: MockedCategories())
         viewModel?.categories.drive(onNext: { [weak self] _ in self?.tableView.reloadData() }).disposed(by: disposeBag)
         viewModel?.isFetching.drive(refreshView.rx.isRefreshing).disposed(by: disposeBag)

@@ -14,6 +14,7 @@ class CategoriesListViewModel: CategoriesListViewModelProtocol {
     
     let selectedIndexes = BehaviorRelay<[Int]>(value: [])
     
+    
     //MARK: - Private properties
     
     private let disposeBag = DisposeBag()
@@ -37,7 +38,7 @@ class CategoriesListViewModel: CategoriesListViewModelProtocol {
     }
     
     var isFetching: Driver<Bool> {
-        return isFetchingSubject.asDriver()
+        return isFetchingSubject.asDriver().distinctUntilChanged()
     }
     
     var error: Driver<String?> {
@@ -54,6 +55,10 @@ class CategoriesListViewModel: CategoriesListViewModelProtocol {
     
     var selectedCategories: [Category] {
         return selectedIndexes.value.map({ categoriesSubject.value[$0] })
+    }
+    
+    var isPlayButtonEnabled: Driver<Bool> {
+        return Observable.combineLatest(selectedIndexes.map({ !$0.isEmpty }), isFetchingSubject) { $0 && !$1 }.asDriver(onErrorJustReturn: false)
     }
     
     func categoryViewModel(forIndex: Int) -> CategoryViewModel? {

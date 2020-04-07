@@ -20,7 +20,9 @@ class SwipeCardsViewController: UIViewController {
     
     private var currentSwipeDirection = SwipeCards.Direction.left
     private var score = 0
-    private let screenRatio = UIScreen.main.bounds.width / UIScreen.main.bounds.height
+    
+    private let verticalInset: CGFloat = 16.0
+    private let horizontalInset: CGFloat = 16.0
     
     //MARK: - Lifecycle
     
@@ -29,9 +31,6 @@ class SwipeCardsViewController: UIViewController {
         setupBackButton()
         gameUI = SwipeCardsGameUIBuilder(baseView: view).build()
         setupGameInitialStatus()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.topItem?.title = ""
     }
 }
@@ -55,9 +54,11 @@ private extension SwipeCardsViewController {
             })
         }
         
+        setCardsAnimations()
+        
         if let swipeDirection = viewModel?.getNextDirection() {
             currentSwipeDirection = swipeDirection
-            gameUI?.directionLabel.text = currentSwipeDirection.rawValue
+            gameUI.directionLabel.text = currentSwipeDirection.rawValue
         }
     }
     
@@ -66,6 +67,7 @@ private extension SwipeCardsViewController {
         addSwipeRecognizerToCard(card)
         card.setup(model: model)
         addCardToContainer(card)
+        setCardsAnimations()
     }
     
     func addSwipeRecognizerToCard(_ card: CardView) {
@@ -74,17 +76,27 @@ private extension SwipeCardsViewController {
     }
     
     func addCardToContainer(_ card: CardView, index: Int = 0) {
-        gameUI?.cardsContainer.insertSubview(card, at: 0)
+        gameUI.cardsContainer.insertSubview(card, at: 0)
         setupCardConstraints(card)
     }
     
-    func setupCardConstraints(_ card: CardView) {
+    func setupCardConstraints(_ card: UIView) {
         NSLayoutConstraint.activate([
             card.leadingAnchor.constraint(equalTo: gameUI.cardsContainer.leadingAnchor),
             card.trailingAnchor.constraint(equalTo: gameUI.cardsContainer.trailingAnchor),
             card.topAnchor.constraint(equalTo: gameUI.cardsContainer.topAnchor),
-            card.bottomAnchor.constraint(equalTo: gameUI.cardsContainer.bottomAnchor),
+            card.bottomAnchor.constraint(equalTo: gameUI.cardsContainer.bottomAnchor)
         ])
+    }
+    
+    func setCardsAnimations() {
+        for (index,card) in gameUI.cardsContainer.subviews.reversed().enumerated() {
+            let index: CGFloat = CGFloat(index)
+            let cardScale = max(0, CGFloat(CGFloat(1) - (index * CGFloat(0.1))))
+            UIView.animate(withDuration: 0.5, animations: {
+                card.transform = CGAffineTransform(scaleX: cardScale, y: cardScale)
+            })
+        }
     }
     
     func setupBackButton() {

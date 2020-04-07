@@ -26,6 +26,7 @@ protocol CategoriesListViewModelProtocol {
     var categories: Driver<[Category]> { get }
     var selectedIndexes: BehaviorRelay<[Int]> { get }
     var selectedCategories: [Category] { get }
+    var isPlayButtonEnabled: Driver<Bool> { get }
     
     func categoryViewModel(forIndex: Int) -> CategoryViewModel?
 }
