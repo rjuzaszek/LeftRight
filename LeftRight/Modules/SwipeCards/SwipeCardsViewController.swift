@@ -21,9 +21,6 @@ class SwipeCardsViewController: UIViewController {
     private var currentSwipeDirection = SwipeCards.Direction.left
     private var score = 0
     
-    private let verticalInset: CGFloat = 16.0
-    private let horizontalInset: CGFloat = 16.0
-    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -39,8 +36,12 @@ class SwipeCardsViewController: UIViewController {
 private extension SwipeCardsViewController {
     
     func setupGameInitialStatus() {
+        setupInitialCards()
+        setupGameInitialDirection()
+    }
+    
+    func setupInitialCards() {
         let cards = [CardView(), CardView(), CardView(), CardView()]
-        
         for (index,card) in cards.enumerated() {
             viewModel?.getNextCard(completion: { [weak self] model in
                 card.setup(model: model)
@@ -50,12 +51,13 @@ private extension SwipeCardsViewController {
                 } else {
                     self?.gameUI.cardsContainer.insertSubview(card, belowSubview: cards[index-1])
                 }
-                self?.setupCardConstraints(card)
+                self?.gameUI.cardsContainer.setupFillingConstraints(card)
             })
         }
-        
         setCardsAnimations()
-        
+    }
+    
+    func setupGameInitialDirection() {
         if let swipeDirection = viewModel?.getNextDirection() {
             currentSwipeDirection = swipeDirection
             gameUI.directionLabel.text = currentSwipeDirection.rawValue
@@ -66,7 +68,7 @@ private extension SwipeCardsViewController {
         let card = CardView()
         addSwipeRecognizerToCard(card)
         card.setup(model: model)
-        addCardToContainer(card)
+        gameUI.cardsContainer.insertSubviewWithConstraints(card, index: 0)
         setCardsAnimations()
     }
     
@@ -75,25 +77,11 @@ private extension SwipeCardsViewController {
         card.addGestureRecognizer(swipeGestureRecognizer)
     }
     
-    func addCardToContainer(_ card: CardView, index: Int = 0) {
-        gameUI.cardsContainer.insertSubview(card, at: 0)
-        setupCardConstraints(card)
-    }
-    
-    func setupCardConstraints(_ card: UIView) {
-        NSLayoutConstraint.activate([
-            card.leadingAnchor.constraint(equalTo: gameUI.cardsContainer.leadingAnchor),
-            card.trailingAnchor.constraint(equalTo: gameUI.cardsContainer.trailingAnchor),
-            card.topAnchor.constraint(equalTo: gameUI.cardsContainer.topAnchor),
-            card.bottomAnchor.constraint(equalTo: gameUI.cardsContainer.bottomAnchor)
-        ])
-    }
-    
     func setCardsAnimations() {
         for (index,card) in gameUI.cardsContainer.subviews.reversed().enumerated() {
             let index: CGFloat = CGFloat(index)
-            let cardScale = max(0, CGFloat(CGFloat(1) - (index * CGFloat(0.1))))
-            UIView.animate(withDuration: 0.5, animations: {
+            let cardScale: CGFloat = max(0, 1 - index * SwipeCards.cardsScaleFactor)
+            UIView.animate(withDuration: 0.3, animations: {
                 card.transform = CGAffineTransform(scaleX: cardScale, y: cardScale)
             })
         }
@@ -130,14 +118,14 @@ private extension SwipeCardsViewController {
                     dismissCard(card)
                     return
                 } else if isDismissVelocity && cardVelocity > 0 || view.bounds.width - card.convert(card.center, to: view).x < CGFloat(SwipeCards.dismissPosition) {
-                    flashWrongAnswer(card)
+                    WrongAnswerAnimation.animate(card)
                 }
             case .right:
                 if isDismissVelocity && cardVelocity > 0 || view.bounds.width - card.convert(card.center, to: view).x < CGFloat(SwipeCards.dismissPosition) {
                     dismissCard(card)
                     return
                 } else if isDismissVelocity && cardVelocity < 0 || card.convert(card.center, to: view).x < CGFloat(SwipeCards.dismissPosition) {
-                    flashWrongAnswer(card)
+                    WrongAnswerAnimation.animate(card)
                 }
             }
             
@@ -166,29 +154,12 @@ private extension SwipeCardsViewController {
             }, completion: { _ in
                 self.gameUI.directionLabel.text = self.currentSwipeDirection.rawValue
                 self.gameUI.directionLabel.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
-                UIView.animate(withDuration: 0.1, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.gameUI.directionLabel.alpha = 1.0
                     self.gameUI.directionLabel.transform = .identity
                 })
             })
         }
-    }
-    
-    func flashWrongAnswer(_ card: UIView) {
-        card.layer.cornerRadius = 15
-        card.clipsToBounds = true
-        UIView.animate(withDuration: 0.1, animations: {
-            card.layer.backgroundColor = UIColor.red.withAlphaComponent(0.7).cgColor
-            card.subviews.first?.alpha = 0.7
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.4, animations: {
-                card.layer.backgroundColor = UIColor.clear.cgColor
-                card.subviews.first?.alpha = 1.0
-            }, completion: { _ in
-                card.layer.cornerRadius = 15
-                card.clipsToBounds = true
-            })
-        })
     }
     
     func transform(view: CardView, for translation: CGPoint) -> CGAffineTransform {

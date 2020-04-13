@@ -9,8 +9,10 @@
 import UIKit
 
 struct SwipeCards {
-    static let dismissVelocity = 200.0
+    static let dismissVelocity = 2400.0
     static let dismissPosition = 32.0
+    
+    static let cardsScaleFactor: CGFloat = 0.1
     
     enum Direction: String {
         case left = "LEFT"

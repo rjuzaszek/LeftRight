@@ -12,8 +12,9 @@ import RxCocoa
 
 class CategoriesListViewModel: CategoriesListViewModelProtocol {
     
-    let selectedIndexes = BehaviorRelay<[Int]>(value: [])
+    //MARK: Input
     
+    let selectedIndexes = BehaviorRelay<[Int]>(value: [])
     
     //MARK: - Private properties
     
@@ -31,7 +32,7 @@ class CategoriesListViewModel: CategoriesListViewModelProtocol {
         fetchCategories()
     }
     
-    //MARK: - Public interface
+    //MARK: - Output
     
     var numberOfCategories: Int {
         return categoriesSubject.value.count
@@ -58,7 +59,9 @@ class CategoriesListViewModel: CategoriesListViewModelProtocol {
     }
     
     var isPlayButtonEnabled: Driver<Bool> {
-        return Observable.combineLatest(selectedIndexes.map({ !$0.isEmpty }), isFetchingSubject) { $0 && !$1 }.asDriver(onErrorJustReturn: false)
+        return Observable.combineLatest(selectedIndexes.map({ !$0.isEmpty }), isFetchingSubject) {
+            $0 && !$1
+        }.asDriver(onErrorJustReturn: false)
     }
     
     func categoryViewModel(forIndex: Int) -> CategoryViewModel? {

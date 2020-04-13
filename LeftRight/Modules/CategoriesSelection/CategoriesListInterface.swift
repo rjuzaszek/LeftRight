@@ -19,12 +19,13 @@ struct CategoriesList {
 }
 
 protocol CategoriesListViewModelProtocol {
+    var selectedIndexes: BehaviorRelay<[Int]> { get }
+    
     var numberOfCategories: Int { get }
     var isFetching: Driver<Bool> { get }
     var error: Driver<String?> { get }
     var hasError: Bool { get }
     var categories: Driver<[Category]> { get }
-    var selectedIndexes: BehaviorRelay<[Int]> { get }
     var selectedCategories: [Category] { get }
     var isPlayButtonEnabled: Driver<Bool> { get }
     

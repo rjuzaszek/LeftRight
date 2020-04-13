@@ -35,8 +35,9 @@ class CardView: UIView {
         removeAllSubviews()
         let imageView = UIImageView()
         imageView.backgroundColor = .white
-        ImageDownloader.download(from: model.photoUrl, completion: { image in
+        ImageDownloader.download(from: model.photoUrl, completion: { [weak self] image in
             imageView.image = image
+            self?.setShadow()
         })
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 15
@@ -44,7 +45,6 @@ class CardView: UIView {
         imageView.clipsToBounds = true
         addSubview(imageView)
         setImageViewConstraints(imageView)
-        setShadow()
     }
 }
 
