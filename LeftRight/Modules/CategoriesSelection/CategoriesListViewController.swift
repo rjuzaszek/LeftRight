@@ -37,8 +37,8 @@ private extension CategoriesListViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsMultipleSelection = true
-        tableView.estimatedRowHeight = 160
-        tableView.rowHeight = 160
+        tableView.estimatedRowHeight = UIScreen.main.bounds.width / 2.7
+        tableView.rowHeight = UIScreen.main.bounds.width / 2.7
         tableView.separatorStyle = .none
         setupRefreshView()
         registerCells()

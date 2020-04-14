@@ -37,7 +37,7 @@ class CardView: UIView {
         imageView.backgroundColor = .white
         ImageDownloader.download(from: model.photoUrl, completion: { [weak self] image in
             imageView.image = image
-            self?.setShadow()
+            self?.setCardShadow()
         })
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 15
@@ -64,12 +64,5 @@ private extension CardView {
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-    
-    func setShadow() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.shadowOpacity = 0.3
-        layer.shadowRadius = 2
     }
 }

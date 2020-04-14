@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,7 @@
 		8AB504D3243755570067288E /* SwipeCardsGameUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB504D2243755570067288E /* SwipeCardsGameUI.swift */; };
 		8AE8497E2445976C00B389DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AE8497D2445976C00B389DF /* GoogleService-Info.plist */; };
 		8AE849812445A83400B389DF /* FirebaseCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE849802445A83400B389DF /* FirebaseCategoriesService.swift */; };
+		8AE849852445C80E00B389DF /* UIView+shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE849842445C80E00B389DF /* UIView+shadow.swift */; };
 		8AFC3FA224333418001E00DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC3FA124333418001E00DE /* AppDelegate.swift */; };
 		8AFC3FAB2433341A001E00DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC3FAA2433341A001E00DE /* Assets.xcassets */; };
 		8AFC3FAE2433341A001E00DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC3FAC2433341A001E00DE /* LaunchScreen.storyboard */; };
@@ -93,6 +94,7 @@
 		8AB504D2243755570067288E /* SwipeCardsGameUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsGameUI.swift; sourceTree = "<group>"; };
 		8AE8497D2445976C00B389DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8AE849802445A83400B389DF /* FirebaseCategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCategoriesService.swift; sourceTree = "<group>"; };
+		8AE849842445C80E00B389DF /* UIView+shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+shadow.swift"; sourceTree = "<group>"; };
 		8AFC3F9E24333418001E00DE /* LeftRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeftRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFC3FA124333418001E00DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AFC3FAA2433341A001E00DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -306,6 +308,22 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		8AE849822445C7E700B389DF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8AE849832445C7EE00B389DF /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8AE849832445C7EE00B389DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8AE849842445C80E00B389DF /* UIView+shadow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8AFC3F9524333418001E00DE = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +347,7 @@
 		8AFC3FA024333418001E00DE /* LeftRight */ = {
 			isa = PBXGroup;
 			children = (
+				8AE849822445C7E700B389DF /* Common */,
 				8AFC3FC424333678001E00DE /* Main */,
 				8AFC3FC324333667001E00DE /* Resources */,
 				8AFC3FC62433368F001E00DE /* Modules */,
@@ -680,6 +699,7 @@
 				8AA41CD7243A0069001C8F07 /* CategoriesService.swift in Sources */,
 				8AB504D12437524D0067288E /* SwipeCardsGameUIBuilder.swift in Sources */,
 				8AB504C924367E8E0067288E /* SwipeCardsViewModel.swift in Sources */,
+				8AE849852445C80E00B389DF /* UIView+shadow.swift in Sources */,
 				8A3CCBF32433416100AA80AD /* ExtendedLaunchScreenViewController.swift in Sources */,
 				8A3CCBFB2433502900AA80AD /* CategoriesListInterface.swift in Sources */,
 				8A9AFE17243BBF76000BF358 /* GetPictureUrlStrategyFactory.swift in Sources */,

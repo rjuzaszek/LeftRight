@@ -23,19 +23,22 @@ class CategorySelectionCell: UITableViewCell {
     }
     
     func setup(viewModel: CategoryViewModel) {
-        thumbnail.layer.cornerRadius = 15
+        thumbnail.contentMode = .scaleAspectFill
+        thumbnail.layer.cornerRadius = (bounds.width - 32.0) / 45
         thumbnail.clipsToBounds = true
-        //thumbnail.tintColor = .systemPink
         ImageDownloader.download(from: viewModel.thumbnailUrl, completion: { [weak self] in
             self?.thumbnail.image = $0
+            self?.thumbnail.setCardShadow()
         })
-        label.text = viewModel.name
+        label.text = viewModel.name.uppercased()
+        label.textColor = .systemPink
+        label.backgroundColor = .white
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if self.isSelected {
-            backgroundColor = UIColor.systemPink.withAlphaComponent(0.5)
+            backgroundColor = UIColor.systemPink.withAlphaComponent(0.2)
         } else {
             backgroundColor = .clear
         }
