@@ -30,7 +30,7 @@ class SwipeCardsViewModel: SwipeCardsViewModelProtocol {
     func getNextCard(completion: @escaping (SwipeCardModel) -> Void) {
         let index = Int.random(in: 0..<categories.count)
         let getPictureStrategy = GetPictureUrlStrategyFactory.make(type: categories[index].method, parameters: categories[index].parameters)
-        getPictureStrategy.getPicutreUrl(from: categories[index].url, completion: {
+        getPictureStrategy.getPicutreUrl(from: categories[index].path, completion: {
             completion(SwipeCardModel(photoUrl: $0))
         })
     }

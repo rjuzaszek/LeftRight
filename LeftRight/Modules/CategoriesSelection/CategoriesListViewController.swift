@@ -37,8 +37,9 @@ private extension CategoriesListViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsMultipleSelection = true
-        tableView.estimatedRowHeight = 60
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 160
+        tableView.rowHeight = 160
+        tableView.separatorStyle = .none
         setupRefreshView()
         registerCells()
     }
@@ -70,7 +71,7 @@ private extension CategoriesListViewController {
     }
     
     func bindViewModel() {
-        viewModel = CategoriesListViewModel(categoriesService: MockedCategories())
+        viewModel = CategoriesListViewModel(categoriesService: FirebaseCategoriesService())
         viewModel?.categories.drive(onNext: { [weak self] _ in self?.tableView.reloadData() }).disposed(by: disposeBag)
         viewModel?.isFetching.drive(refreshView.rx.isRefreshing).disposed(by: disposeBag)
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] _ in self?.setSelectedIndexes() }).disposed(by: disposeBag)

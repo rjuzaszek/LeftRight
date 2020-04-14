@@ -7,6 +7,10 @@ target 'LeftRight' do
 
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
 
   target 'LeftRightTests' do
     inherit! :search_paths

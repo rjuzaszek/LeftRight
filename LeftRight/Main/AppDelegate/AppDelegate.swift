@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupNavigationBarApperance()
+        FirebaseApp.configure()
         return true
     }
     
@@ -20,11 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().tintColor = .systemPink
-        //UINavigationBar.appearance().barTintColor = .clear
-        //UINavigationBar.appearance().isTranslucent = false
-        //UINavigationBar.appearance().clipsToBounds = false
-        //UINavigationBar.appearance().backgroundColor = .white
-        //UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : (UIFont(name: "FONT NAME", size: 18))!, NSForegroundColorAttributeName: UIColor.whiteColor()] }
     }
 }
 

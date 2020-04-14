@@ -10,8 +10,10 @@ import Foundation
 
 struct CategoryViewModel {
     var name: String
+    var thumbnailUrl: String
     
     init(category: Category) {
         name = category.name
+        thumbnailUrl = category.thumbnailUrl
     }
 }

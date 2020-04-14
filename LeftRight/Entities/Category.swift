@@ -10,10 +10,8 @@ import Foundation
 
 struct Category {
     var name: String
-    var thumbnailImageUrl: String = ""
-    var url: String = ""
-    
-    //another object later / rest = fieldName
+    var thumbnailUrl: String = ""
+    var path: String
     var method: String
     var parameters: [String: Any]
 }

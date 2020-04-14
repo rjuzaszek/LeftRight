@@ -45,7 +45,7 @@ private extension SwipeCardsViewController {
         for (index,card) in cards.enumerated() {
             viewModel?.getNextCard(completion: { [weak self] model in
                 card.setup(model: model)
-                self?.addSwipeRecognizerToCard(card)
+                self?.addSwipeRecognizer(to: card)
                 if index == 0 {
                     self?.gameUI.cardsContainer.addSubview(card)
                 } else {
@@ -66,13 +66,13 @@ private extension SwipeCardsViewController {
     
     func makeNewCard(with model: SwipeCardModel) {
         let card = CardView()
-        addSwipeRecognizerToCard(card)
+        addSwipeRecognizer(to: card)
         card.setup(model: model)
         gameUI.cardsContainer.insertSubviewWithConstraints(card, index: 0)
         setCardsAnimations()
     }
     
-    func addSwipeRecognizerToCard(_ card: CardView) {
+    func addSwipeRecognizer(to card: CardView) {
         let swipeGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(swipeCard))
         card.addGestureRecognizer(swipeGestureRecognizer)
     }
@@ -103,6 +103,9 @@ private extension SwipeCardsViewController {
         switch sender.state {
         case .began:
             card.shouldRotateLeft = sender.location(ofTouch: 0, in: card).y > (card.bounds.height / 2)
+            UIView.animate(withDuration: 0.3, animations: {
+                card.transform = CGAffineTransform(scaleX: SwipeCards.cardTouchScaleFactor, y: SwipeCards.cardTouchScaleFactor)
+            })
             
         case .changed:
             let translation = sender.translation(in: card.superview)
@@ -166,6 +169,6 @@ private extension SwipeCardsViewController {
         let rotationDirection: CGFloat = view.shouldRotateLeft ? -1 : 1
         let moveAmount = CGAffineTransform(translationX: translation.x, y: translation.y)
         let rotation = rotationDirection * sin(translation.x / (view.frame.width * 4.0))
-        return moveAmount.rotated(by: rotation)
+        return moveAmount.rotated(by: rotation).scaledBy(x: SwipeCards.cardTouchScaleFactor, y: SwipeCards.cardTouchScaleFactor)
     }
 }

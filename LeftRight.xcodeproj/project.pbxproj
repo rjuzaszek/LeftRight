@@ -36,6 +36,8 @@
 		8AB504CF243751460067288E /* SwipeCardsGameComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB504CE243751460067288E /* SwipeCardsGameComponentsFactory.swift */; };
 		8AB504D12437524D0067288E /* SwipeCardsGameUIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB504D02437524D0067288E /* SwipeCardsGameUIBuilder.swift */; };
 		8AB504D3243755570067288E /* SwipeCardsGameUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB504D2243755570067288E /* SwipeCardsGameUI.swift */; };
+		8AE8497E2445976C00B389DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AE8497D2445976C00B389DF /* GoogleService-Info.plist */; };
+		8AE849812445A83400B389DF /* FirebaseCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE849802445A83400B389DF /* FirebaseCategoriesService.swift */; };
 		8AFC3FA224333418001E00DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC3FA124333418001E00DE /* AppDelegate.swift */; };
 		8AFC3FAB2433341A001E00DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC3FAA2433341A001E00DE /* Assets.xcassets */; };
 		8AFC3FAE2433341A001E00DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC3FAC2433341A001E00DE /* LaunchScreen.storyboard */; };
@@ -89,6 +91,8 @@
 		8AB504CE243751460067288E /* SwipeCardsGameComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsGameComponentsFactory.swift; sourceTree = "<group>"; };
 		8AB504D02437524D0067288E /* SwipeCardsGameUIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsGameUIBuilder.swift; sourceTree = "<group>"; };
 		8AB504D2243755570067288E /* SwipeCardsGameUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsGameUI.swift; sourceTree = "<group>"; };
+		8AE8497D2445976C00B389DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8AE849802445A83400B389DF /* FirebaseCategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCategoriesService.swift; sourceTree = "<group>"; };
 		8AFC3F9E24333418001E00DE /* LeftRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeftRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFC3FA124333418001E00DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AFC3FAA2433341A001E00DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				8A9AFE1C243C7E1C000BF358 /* MockedCategories.swift */,
+				8AE849802445A83400B389DF /* FirebaseCategoriesService.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				8AFC3FAF2433341A001E00DE /* Info.plist */,
+				8AE8497D2445976C00B389DF /* GoogleService-Info.plist */,
 				8AFC3FAA2433341A001E00DE /* Assets.xcassets */,
 				8AFC3FAC2433341A001E00DE /* LaunchScreen.storyboard */,
 			);
@@ -472,6 +478,8 @@
 				8AFC3F9A24333418001E00DE /* Sources */,
 				8AFC3F9B24333418001E00DE /* Frameworks */,
 				8AFC3F9C24333418001E00DE /* Resources */,
+				8AE8497F2445A25E00B389DF /* ShellScript */,
+				0B1558DE74E733882DE72ACF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -549,6 +557,7 @@
 				8AFC3FCF24333CB8001E00DE /* CategoriesList.storyboard in Resources */,
 				8A3CCBF5243341BC00AA80AD /* ExtendedLaunchScreen.storyboard in Resources */,
 				8A1BEEC2243369B4002B5A7C /* CategorySelectionCell.xib in Resources */,
+				8AE8497E2445976C00B389DF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +571,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0B1558DE74E733882DE72ACF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LeftRight/Pods-LeftRight-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LeftRight/Pods-LeftRight-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LeftRight/Pods-LeftRight-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		55F218DFA17A52F2FC64441E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -583,6 +609,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8AE8497F2445A25E00B389DF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		A1771C3312F1AF2F974C3B71 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -614,6 +657,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A9AFE20243D1F8C000BF358 /* WrongAnswerAnimation.swift in Sources */,
+				8AE849812445A83400B389DF /* FirebaseCategoriesService.swift in Sources */,
 				8AFC3FD724333EB1001E00DE /* GameCoordinator.swift in Sources */,
 				8A9AFE24243D20D5000BF358 /* UIView+insertWithConstraints.swift in Sources */,
 				8A9AFE15243BBC9C000BF358 /* SimplePictureUrlStrategy.swift in Sources */,
